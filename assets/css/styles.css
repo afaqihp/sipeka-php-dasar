@@ -1,0 +1,412 @@
+/* CSS General */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+h1,
+h2 {
+  color: #444;
+}
+
+h3 {
+  color: #999;
+}
+
+.btn {
+  background: #1f75f6;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  border-radius: 1em;
+}
+
+.icon-case img {
+  width: 70px;
+}
+
+.btn:hover {
+  color: #1f75f6;
+  background: #f1f1f1;
+
+  border: 2px solid #1f75f6;
+}
+
+.title {
+  /* display: flex; */
+  align-items: center;
+  /* justify-content: space-between; */
+  padding: 10px 10px;
+  border-bottom: 3px solid #999;
+}
+
+.title2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 10px;
+}
+
+.text {
+  text-align: justify;
+  margin: 20px;
+}
+
+/* CSS Tabel */
+table {
+  padding: 10px;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+}
+
+td img {
+  width: 28px;
+  height: 28px;
+}
+
+/* CSS Side Menu */
+.side-menu {
+  position: fixed;
+  background: #1f75f6;
+  width: 20vw;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: 0.5s;
+}
+
+.side-menu li {
+  font-size: 24px;
+  padding: 10px 40px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  transition: 0.5s;
+}
+
+.side-menu li:hover {
+  background: #444;
+  color: #fff;
+}
+
+.side-menu img {
+  width: 32px;
+  height: 32px;
+}
+
+/* CSS Footer */
+.footer {
+  position: absolute;
+  width: 100vw;
+  transition: width 0.5s;
+  background: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.footer p {
+  font-size: 20px;
+  padding: 10px;
+  color: #999;
+  text-align: center;
+}
+
+.social-links img {
+  height: 13px;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.social-links {
+  text-align: center;
+}
+
+/* CSS container */
+.container {
+  position: absolute;
+  right: 0;
+  transition: width 0.5s;
+  width: 100vw;
+  height: 100vh;
+  background: #f1f1f1;
+}
+
+.container .header {
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0;
+  right: 0;
+  /* width: 80vw; */
+  transition: width 0.5s;
+  width: 100vw;
+  height: 10vh;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.container .header .nav {
+  width: 95%;
+  display: flex;
+  align-items: center;
+}
+
+.container .header .nav .header-title {
+  margin-left: 2em;
+  flex: 3;
+  display: flex;
+  justify-content: left;
+}
+
+/* Style bagian search */
+.search {
+  margin: 20px;
+}
+
+.search input[type="text"] {
+  border: none;
+  background: #f1f1f1;
+  padding: 10px;
+  height: 40px;
+  width: 200px;
+  float: left;
+}
+
+.search button {
+  float: left;
+  width: 50px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search button img {
+  width: 40px;
+}
+
+.container .header .nav .user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Bagian Konten */
+.container .content {
+  position: relative;
+  /* Jarak antara header dengan container */
+  margin-top: 10vh;
+  /* tinggi minimum content */
+  min-height: 80vh;
+  background: #f1f1f1;
+}
+
+.container .content .cards {
+  padding: 20px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.container .content .cards .card {
+  width: 250px;
+  height: 150px;
+  background: white;
+  margin: 20px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.container .content .content-2 {
+  min-height: 60vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.container .content .content-2 .main-content {
+  min-height: 70vh;
+  flex: 5;
+  background: white;
+  margin: 25px 25px 25px 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  flex-direction: column;
+  /* Tambahan */
+  align-items: center;
+}
+
+.container .content .content-2 .main-content-2 {
+  flex: 2.5;
+  background: white;
+  min-height: 50vh;
+  margin: 25px 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  flex-direction: column;
+}
+
+.container .content .content-2 .main-content-2 table td:nth-child(1) img {
+  height: 40px;
+  width: 40px;
+}
+
+.form select {
+  display: block;
+  height: 50px;
+  width: 100%;
+  background-color: #f1f1f1;
+  border-radius: 3px;
+  padding: 0 10px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+/* Alert */
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+}
+
+.alert.success {
+  background-color: #04aa6d;
+}
+.alert.info {
+  background-color: #2196f3;
+}
+.alert.warning {
+  background-color: #ff9800;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+
+/* Responsive  */
+@media screen and (max-width: 1050px) {
+  .side-menu li {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 940px) {
+  .side-menu li span {
+    display: none;
+  }
+  .side-menu {
+    align-items: center;
+  }
+  .side-menu li img {
+    width: 40px;
+    height: 40px;
+  }
+  .side-menu li:hover {
+    background: #1f75f6;
+    padding: 8px 38px;
+    border: 2px solid white;
+  }
+}
+
+@media screen and (max-width: 536px) {
+  .brand-name h1 {
+    font-size: 16px;
+  }
+  .container .content .cards {
+    justify-content: center;
+  }
+  .side-menu li img {
+    width: 30px;
+    height: 30px;
+  }
+  .container .content .content-2 .main-content table th:nth-child(2),
+  .container .content .content-2 .main-content table td:nth-child(2) {
+    display: none;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  p {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  h1 {
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  .main-content {
+    min-height: 50vh;
+    width: 100px;
+  }
+}
