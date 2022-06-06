@@ -1,11 +1,3 @@
-<?php
-session_start();
-if (!isset($_SESSION['login'])) {
-  header("Location: login.php");
-  exit;
-}
-?>
-
 <!-- Bagian side menu -->
 <div id="my-side-menu" class="side-menu">
   <ul>
