@@ -68,6 +68,7 @@ if (isset($_POST["login"])) {
     <link rel="stylesheet" href="./assets/css/styles.css" />
     <link rel="stylesheet" href="./assets/css/loginstyle.css" />
     <script src="./assets/js/myScript.js"></script>
+    <link rel="icon" href="./assets/image/logo.png" type="image/x-icon">
     <title>Login | SIPEKA STIS</title>
 </head>
 
@@ -126,7 +127,7 @@ if (isset($_POST["login"])) {
         <!-- Akhir konten -->
 
         <!-- Bagian footer -->
-        <?php include './footer.html'; ?>
+        <?php include './footer.php'; ?>
         <!-- Akhir footer -->
     </div>
     <!-- Akhir kontainer -->

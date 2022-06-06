@@ -34,7 +34,7 @@ $clinic_registrations = query("SELECT * FROM clinic_registration WHERE user_id =
 <body>
     <!-- Include sidemenu -->
     <?php
-    include './sidemenu.html';
+    include './sidemenu.php';
     ?>
 
     <!-- Bagian kontainer -->
@@ -42,7 +42,7 @@ $clinic_registrations = query("SELECT * FROM clinic_registration WHERE user_id =
 
         <!-- Include header -->
         <?php
-        include './header.html';
+        include './header.php';
         ?>
 
         <!-- Awal konten -->
@@ -108,7 +108,7 @@ $clinic_registrations = query("SELECT * FROM clinic_registration WHERE user_id =
         </div>
         <!-- Akhir konten -->
         <?php
-        include './footer.html';
+        include './footer.php';
         ?>
     </div>
     <!-- Akhir kontainer -->

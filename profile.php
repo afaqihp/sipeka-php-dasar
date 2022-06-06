@@ -78,7 +78,7 @@ if (isset($_POST['edit'])) {
 <body>
     <!-- Include sidemenu -->
     <?php
-    include './sidemenu.html';
+    include './sidemenu.php';
     ?>
 
     <!-- Bagian kontainer -->
@@ -86,7 +86,7 @@ if (isset($_POST['edit'])) {
 
         <!-- Include header -->
         <?php
-        include './header.html';
+        include './header.php';
         ?>
 
         <!-- Awal konten -->
@@ -131,7 +131,7 @@ if (isset($_POST['edit'])) {
         <!-- Akhir konten -->
 
         <?php
-        include './footer.html';
+        include './footer.php';
         ?>
     </div>
     <!-- Akhir kontainer -->

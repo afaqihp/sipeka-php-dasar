@@ -85,7 +85,7 @@ if (isset($_POST["register"])) {
             <!-- Akhir konten -->
 
             <!-- Bagian footer -->
-            <?php include './footer.html'; ?>
+            <?php include './footer.php'; ?>
             <!-- Akhir footer -->
         </div>
         <!-- Akhir kontainer -->

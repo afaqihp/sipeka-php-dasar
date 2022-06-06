@@ -1,16 +1,16 @@
 <?php
 
 //Koneksi ke database local
-// $db_hostname = "localhost";
-// $db_username = "root";
-// $db_password = "";
-// $db_database = "projek_pbw";
+$db_hostname = "localhost";
+$db_username = "root";
+$db_password = "";
+$db_database = "projek_pbw";
 
 //Koneksi ke database server
-$db_hostname = "localhost";
-$db_username = "222011345";
-$db_password = "PoemReal061";
-$db_database = "mhs_222011345";
+// $db_hostname = "localhost";
+// $db_username = "222011345";
+// $db_password = "PoemReal061";
+// $db_database = "mhs_222011345";
 $conn = mysqli_connect($db_hostname, $db_username, $db_password, $db_database);
 
 //Fungsi untuk mengambil data dari database

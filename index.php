@@ -30,7 +30,7 @@ $row = mysqli_fetch_assoc($result);
 <body>
     <!-- Include sidemenu -->
     <?php
-    include './sidemenu.html';
+    include './sidemenu.php';
     ?>
 
     <!-- Bagian kontainer -->
@@ -38,7 +38,7 @@ $row = mysqli_fetch_assoc($result);
 
         <!-- Include header -->
         <?php
-        include './header.html';
+        include './header.php';
         ?>
 
         <!-- Awal konten -->
@@ -139,7 +139,7 @@ $row = mysqli_fetch_assoc($result);
         <!-- Akhir konten -->
 
         <?php
-        include 'footer.html';
+        include 'footer.php';
         ?>
 
     </div>
