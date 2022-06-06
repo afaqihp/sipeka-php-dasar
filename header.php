@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['login'])) {
+  header("Location: login.php");
+  exit;
+}
+?>
+
 <!-- Bagian header -->
 <div id="my-header" class="header">
   <div class="nav">

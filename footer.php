@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['login'])) {
+  header("Location: login.php");
+  exit;
+}
+?>
+
 <div id="my-footer" class="footer">
   <p>Created with ❤️ by Faqih</p>
   <div class="social-links">
