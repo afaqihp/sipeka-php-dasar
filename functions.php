@@ -94,6 +94,7 @@ function clinic_register($data)
 {
     global $conn;
     $id_user = htmlspecialchars($data["id"]);
+    $clinic_id = htmlspecialchars($data["clinic_id"]);
     $details = htmlspecialchars($data["details"]);
     $date = htmlspecialchars($data["date"]);
 
@@ -105,7 +106,7 @@ function clinic_register($data)
         return false;
     }
 
-    $query = "INSERT INTO clinic_registration VALUES ('', '$id_user', '$details', '$date')";
+    $query = "INSERT INTO clinic_registration VALUES ('','$clinic_id ', '$id_user', '$details', '$date')";
     mysqli_query($conn, $query);
 
     return mysqli_affected_rows($conn);

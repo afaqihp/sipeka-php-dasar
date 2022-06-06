@@ -30,11 +30,11 @@ $clinic_registrations = query($query);
     </tr>
     <?php foreach ($clinic_registrations as $row) : ?>
         <tr>
-            <td style="text-align:center" ;><?= $row['id']; ?></td>
+            <td><?= $row['id']; ?></td>
             <td><?= $row['details'] ?></td>
-            <td><?= date_format(date_create($row['schedule']), "d F Y") ?></td>
-            <td style="text-align:center" ;>
-                <a href="klinik_delete.php?id=<?= $row['id'] ?>" onclick="return confirm('Are your sure want to delete?');">
+            <td><?= date_format(date_create($row['schedule']), "d-m-Y") ?></td>
+            <td>
+                <a href="klinik_delete.php?id=<?= $row['id'] ?>" onclick="return confirm('Are your sure want to delete?'); ">
                     <img src="./assets/image/delete.png" alt="" />
                 </a>
             </td>

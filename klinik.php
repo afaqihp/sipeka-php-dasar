@@ -59,8 +59,19 @@ $clinic_registrations = query("SELECT * FROM clinic_registration WHERE user_id =
 
                             <input type="hidden" name="id" id="id" value="<?= $row['id'] ?>" />
 
+                            <label for="clinic_id">Clinic</label>
+                            <select name="clinic_id" id="clinic_id" class="form-control" required>
+                                <option value="">Choose Clinic</option>
+                                <?php
+                                $clinics = query("SELECT * FROM clinic");
+                                foreach ($clinics as $clinic) {
+                                    echo "<option value='$clinic[id]'>$clinic[name]</option>";
+                                }
+                                ?>
+                            </select>
+
                             <label for="details">Details</label>
-                            <input type="text" name="details" id="details" placeholder="Details" name="details" required />
+                            <input type="text" name="details" id="details" placeholder="Eg. Konsultasi sakit ...." name="details" required />
 
                             <label for="date">Schedule</label>
                             <input type="date" placeholder="Date" id="date" name="date" required />
@@ -91,10 +102,10 @@ $clinic_registrations = query("SELECT * FROM clinic_registration WHERE user_id =
                             </tr>
                             <?php foreach ($clinic_registrations as $row) : ?>
                                 <tr>
-                                    <td style="text-align:center" ;><?= $row['id']; ?></td>
+                                    <td><?= $row['id']; ?></td>
                                     <td><?= $row['details'] ?></td>
-                                    <td><?= date_format(date_create($row['schedule']), "d F Y") ?></td>
-                                    <td style="text-align:center" ;>
+                                    <td><?= date_format(date_create($row['schedule']), "d-m-Y") ?></td>
+                                    <td>
                                         <a href="klinik_delete.php?id=<?= $row['id'] ?>" onclick="return confirm('Are your sure want to delete?'); ">
                                             <img src="./assets/image/delete.png" alt="" />
                                         </a>
@@ -112,9 +123,6 @@ $clinic_registrations = query("SELECT * FROM clinic_registration WHERE user_id =
         ?>
     </div>
     <!-- Akhir kontainer -->
-
-
-
 
     <script src="./assets/js/scriptClinicAjax.js"></script>
 </body>
