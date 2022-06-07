@@ -33,6 +33,10 @@ function create_account($data)
     $username = htmlspecialchars($data["username"]);
     $password = mysqli_real_escape_string($conn, $data["password"]);
     $konfirm_password = mysqli_real_escape_string($conn, $data["password2"]);
+    $age = null;
+    $height = null;
+    $weight = null;
+    $id = "";
 
     //====Proses validasi lanjutan agar lebih kuat, sebenarnya di html juga sudah ada validasi
 
@@ -82,9 +86,14 @@ function create_account($data)
     // $password = password_hash($password, PASSWORD_BCRYPT);
     $password = md5($password);
 
-    //Tambahkan user baru ke database
-    $query = "INSERT INTO user VALUES ('', '$username', '$password', '$name', null, null, null)";
-    mysqli_query($conn, $query);
+    //Pakai prepared statement untuk menghindari sql injection
+    $stmt = mysqli_prepare($conn, "INSERT INTO user VALUES(?, ?, ?, ?, ?, ?, ?)");
+    mysqli_stmt_bind_param($stmt, "isssidd", $id, $username, $password, $name, $age, $height, $weight);
+    mysqli_stmt_execute($stmt);
+
+    // // Tanpa prepared statement
+    // $query = "INSERT INTO user VALUES ('', '$username', '$password', '$name', null, null, null)";
+    // mysqli_query($conn, $query);
 
     return mysqli_affected_rows($conn);
 }
@@ -106,8 +115,14 @@ function clinic_register($data)
         return false;
     }
 
-    $query = "INSERT INTO clinic_registration VALUES ('','$clinic_id ', '$id_user', '$details', '$date')";
-    mysqli_query($conn, $query);
+    //Pakai prepared statement untuk menghindari sql injection
+    $stmt = mysqli_prepare($conn, "INSERT INTO clinic_registration (clinic_id, user_id, details, schedule) VALUES(?, ?, ?, ?)");
+    mysqli_stmt_bind_param($stmt, "siss", $clinic_id, $id_user, $details, $date);
+    mysqli_stmt_execute($stmt);
+
+    // //Tanpa prepared statement
+    // $query = "INSERT INTO clinic_registration VALUES ('','$clinic_id ', '$id_user', '$details', '$date')";
+    // mysqli_query($conn, $query);
 
     return mysqli_affected_rows($conn);
 }
@@ -116,7 +131,13 @@ function clinic_register($data)
 function delete_clinic_registration($id)
 {
     global $conn;
-    mysqli_query($conn, "DELETE FROM clinic_registration WHERE id = $id");
+
+    //Pakai prepared statement untuk menghindari sql injection
+    $stmt = mysqli_prepare($conn, "DELETE FROM clinic_registration WHERE id = ?");
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
+
+    // mysqli_query($conn, "DELETE FROM clinic_registration WHERE id = $id");
 
     return mysqli_affected_rows($conn);
 }

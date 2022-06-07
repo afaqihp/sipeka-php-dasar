@@ -10,7 +10,6 @@ require './functions.php';
 $id = $_GET['id'];
 
 if (delete_clinic_registration($id) > 0) {
-
     echo "
     <script>
         alert('Registrasi klinik berhasil dihapus!');

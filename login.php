@@ -30,7 +30,13 @@ if (isset($_POST["login"])) {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    $result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username'");
+    // $result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username'");
+
+    //Pakai prepared statement
+    $stmt = $conn->prepare("SELECT * FROM user WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     //Cek username
     if (mysqli_num_rows($result) === 1) {
