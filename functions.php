@@ -37,6 +37,8 @@ function create_account($data)
     $height = null;
     $weight = null;
     $id = "";
+    //Default role sebagai user biasa
+    $role_id = 2;
 
     //====Proses validasi lanjutan agar lebih kuat, sebenarnya di html juga sudah ada validasi
 
@@ -87,8 +89,8 @@ function create_account($data)
     $password = md5($password);
 
     //Pakai prepared statement untuk menghindari sql injection
-    $stmt = mysqli_prepare($conn, "INSERT INTO user VALUES(?, ?, ?, ?, ?, ?, ?)");
-    mysqli_stmt_bind_param($stmt, "isssidd", $id, $username, $password, $name, $age, $height, $weight);
+    $stmt = mysqli_prepare($conn, "INSERT INTO user VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+    mysqli_stmt_bind_param($stmt, "isssiddi", $id, $username, $password, $name, $age, $height, $weight, $role_id);
     mysqli_stmt_execute($stmt);
 
     // // Tanpa prepared statement
@@ -138,6 +140,105 @@ function delete_clinic_registration($id)
     mysqli_stmt_execute($stmt);
 
     // mysqli_query($conn, "DELETE FROM clinic_registration WHERE id = $id");
+
+    return mysqli_affected_rows($conn);
+}
+
+//Fungsi untuk menambahkan dokter
+function add_new_doctor($data)
+{
+    global $conn;
+    $name = htmlspecialchars($data["name"]);
+    $age = htmlspecialchars($data["age"]);
+    $specialty = htmlspecialchars($data["specialty"]);
+    $contact = htmlspecialchars($data["contact"]);
+    $clinic_id = htmlspecialchars($data["clinic_id"]);
+    $id = "";
+
+    //Regex check Untuk Umur
+    if (!preg_match("/^[0-9]*$/", $age)) {
+        echo "<script>
+            alert('Umur hanya boleh angka!');
+        </script>";
+        return false;
+    }
+
+    //Regex check Untuk No. HP
+    if (!preg_match("/^[0-9]*$/", $contact)) {
+        echo "<script>
+            alert('No. HP hanya boleh angka!');
+        </script>";
+        return false;
+    }
+
+    //Regex check Untuk Spesialis
+    if (!preg_match("/^[a-zA-Z ]*$/", $specialty)) {
+        echo "<script>
+            alert('Spesialis hanya boleh huruf dan spasi!');
+        </script>";
+        return false;
+    }
+
+    //Pakai prepared statement untuk menghindari sql injection
+    $stmt = mysqli_prepare($conn, "INSERT INTO doctor VALUES(?, ?, ?, ?, ?, ?)");
+    mysqli_stmt_bind_param($stmt, "isissi", $id, $name, $age, $specialty, $contact, $clinic_id);
+    mysqli_stmt_execute($stmt);
+
+    return mysqli_affected_rows($conn);
+}
+
+//Fungsi untuk menghapus dokter
+function delete_doctor($id)
+{
+    global $conn;
+
+    //Pakai prepared statement untuk menghindari sql injection  
+    $stmt = mysqli_prepare($conn, "DELETE FROM doctor WHERE id = ?");
+    mysqli_stmt_bind_param($stmt, "i", $id);
+    mysqli_stmt_execute($stmt);
+
+    return mysqli_affected_rows($conn);
+}
+
+//Fungsi untuk mengedit dokter
+function edit_doctor($data)
+{
+    global $conn;
+    $id = htmlspecialchars($data["id"]);
+    $name = htmlspecialchars($data["name"]);
+    $age = htmlspecialchars($data["age"]);
+    $specialty = htmlspecialchars($data["specialty"]);
+    $contact = htmlspecialchars($data["contact"]);
+    $clinic_id = htmlspecialchars($data["clinic_id"]);
+
+    //Regex check Untuk Umur
+    if (!preg_match("/^[0-9]*$/", $age)) {
+        echo "<script>
+            alert('Umur hanya boleh angka!');
+        </script>";
+        return false;
+    }
+
+    //Regex check Untuk No. HP
+    if (!preg_match("/^[0-9]*$/", $contact)) {
+        echo "<script>
+            alert('No. HP hanya boleh angka!');
+        </script>";
+        return false;
+    }
+
+    //Regex check Untuk Spesialis
+    if (!preg_match("/^[a-zA-Z ]*$/", $specialty)) {
+        echo "<script>
+            alert('Spesialis hanya boleh huruf dan spasi!');
+        </script>";
+        return false;
+    }
+
+    //Pakai prepared statement untuk menghindari sql injection
+    $stmt = mysqli_prepare($conn, "UPDATE doctor SET name = ?, age = ?, specialty = ?, contact = ?, clinic_id = ? WHERE id = ?");
+    mysqli_stmt_bind_param($stmt, "sisssi", $name, $age, $specialty, $contact, $clinic_id, $id);
+    mysqli_stmt_execute($stmt);
 
     return mysqli_affected_rows($conn);
 }

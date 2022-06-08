@@ -7,13 +7,8 @@ if (!isset($_SESSION['login'])) {
 
 require './functions.php';
 
-//Dapatkan data user 
-$username = $_SESSION['username'];
-$result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username'");
-$row = mysqli_fetch_assoc($result);
-
 //Tampil history registrasi klinik
-$clinic_registrations = query("SELECT * FROM clinic_registration WHERE user_id = '$row[id]'");
+$clinic_registrations = query("SELECT * FROM clinic_registration");
 ?>
 
 
@@ -49,55 +44,24 @@ $clinic_registrations = query("SELECT * FROM clinic_registration WHERE user_id =
         <div class="content">
             <div class="content-2">
                 <div class="main-content">
-                    <div class=" title">
-                        <h2>Clinic</h2>
+
+                    <div class="title">
+                        <h2>All Clinic Registration History</h2>
                     </div>
+                    <br>
+                    <a href="klinik.php" class="btn">Back</a>
 
-                    <?php if ($_SESSION['role'] == 1) : ?>
-                        <br>
-                        <a class="btn" href="klinik_manage.php">View All Clinic Registration</a>
-                    <?php endif; ?>
-
-
-                    <div class="form">
-                        <form action="klinik_add.php" method="POST">
-                            <h3>Clinic Registration <br> Polstat STIS</h3>
-
-                            <input type="hidden" name="id" id="id" value="<?= $row['id'] ?>" />
-
-                            <label for="clinic_id">Clinic</label>
-                            <select name="clinic_id" id="clinic_id" class="form-control" required>
-                                <option value="">Choose Clinic</option>
-                                <?php
-                                $clinics = query("SELECT * FROM clinic");
-                                foreach ($clinics as $clinic) {
-                                    echo "<option value='$clinic[id]'>$clinic[name]</option>";
-                                }
-                                ?>
-                            </select>
-
-                            <label for="details">Details</label>
-                            <input type="text" name="details" id="details" placeholder="Eg. Konsultasi sakit ...." name="details" required />
-
-                            <label for="date">Schedule</label>
-                            <input type="date" placeholder="Date" id="date" name="date" required />
-
-                            <button type="submit" name="register">Register</button>
-                            <br />
-                            <br />
-                        </form>
+                    <div class="search">
+                        <input type="text" placeholder="Search.." id="keyword" name="keyword" />
+                        <button type="submit" name="search" id="search"><img src="./assets/image/search.png" alt="" /></button>
                     </div>
-
-                    <div class="title" id="clinic-history">
-                        <h2>Clinic Registration History</h2>
-                    </div>
-
 
                     <div id="table-clinic">
                         <table>
 
                             <tr>
                                 <th>Registration ID</th>
+                                <th>User ID</th>
                                 <th>Details</th>
                                 <th>Schedule</th>
                                 <th>Action</th>
@@ -105,6 +69,7 @@ $clinic_registrations = query("SELECT * FROM clinic_registration WHERE user_id =
                             <?php foreach ($clinic_registrations as $row) : ?>
                                 <tr>
                                     <td><?= $row['id']; ?></td>
+                                    <td><?= $row['user_id']; ?></td>
                                     <td><?= $row['details'] ?></td>
                                     <td><?= date_format(date_create($row['schedule']), "d-m-Y") ?></td>
                                     <td>

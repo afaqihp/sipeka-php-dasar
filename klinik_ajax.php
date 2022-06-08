@@ -14,16 +14,16 @@ $row = mysqli_fetch_assoc($result);
 
 $keyword = $_GET['keyword'];
 $query = "SELECT * FROM clinic_registration 
-        WHERE (user_id = '$row[id]') AND
-        (id LIKE '%$keyword%' OR 
+        WHERE id LIKE '%$keyword%' OR 
         details LIKE '%$keyword%' OR 
-        schedule LIKE '%$keyword%')";
+        schedule LIKE '%$keyword%'";
 $clinic_registrations = query($query);
 ?>
 <table>
 
     <tr>
         <th>Registration ID</th>
+        <th>User ID </th>
         <th>Details</th>
         <th>Schedule</th>
         <th>Action</th>
@@ -31,6 +31,7 @@ $clinic_registrations = query($query);
     <?php foreach ($clinic_registrations as $row) : ?>
         <tr>
             <td><?= $row['id']; ?></td>
+            <td><?= $row['user_id']; ?></td>
             <td><?= $row['details'] ?></td>
             <td><?= date_format(date_create($row['schedule']), "d-m-Y") ?></td>
             <td>

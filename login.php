@@ -7,14 +7,15 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     $id = $_COOKIE['id'];
     $key = $_COOKIE['key'];
 
-    //Ambil username berdasarkan id
-    $result = mysqli_query($conn, "SELECT username FROM user WHERE id = $id");
+    //Ambil username dan role berdasarkan id
+    $result = mysqli_query($conn, "SELECT * FROM user WHERE id = $id");
     $row = mysqli_fetch_assoc($result);
 
     //Cek cookie dan username
     if ($key === hash('sha256', $row['username'])) {
         $_SESSION['login'] = true;
         $_SESSION['username'] = $row['username'];
+        $_SESSION['role'] = $row['role_id'];
     }
 }
 
@@ -48,6 +49,7 @@ if (isset($_POST["login"])) {
             //Set session
             $_SESSION["login"] = true;
             $_SESSION["username"] = $row["username"];
+            $_SESSION['role'] = $row['role_id'];
 
             // Cek remember me
             if (isset($_POST['remember'])) {

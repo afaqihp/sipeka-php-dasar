@@ -51,8 +51,13 @@ $row = mysqli_fetch_assoc($result);
                 <div class="main-content">
 
                     <div class="title">
-                        <h2>List Doctor</h2>
+                        <h2>List Doctor </h2>
                     </div>
+
+                    <br>
+                    <?php if ($_SESSION['role'] == 1) : ?>
+                        <a class="btn" href="doctor_add.php">Add New Doctor</a>
+                    <?php endif; ?>
 
                     <div class="search">
                         <input type="text" placeholder="Search.." id="keyword" name="keyword" />
@@ -66,6 +71,9 @@ $row = mysqli_fetch_assoc($result);
                                 <th>Name</th>
                                 <th>Specialty</th>
                                 <th>Contact</th>
+                                <?php if ($_SESSION['role'] == 1) { ?>
+                                    <th>Action</th>
+                                <?php } ?>
                             </tr>
                             <?php foreach ($doctor as $doct) : ?>
                                 <tr>
@@ -83,6 +91,18 @@ $row = mysqli_fetch_assoc($result);
                                     <td>
                                         <a href="https://wa.me/<?= $international_number ?>/?text=Hello, I'm using SIPEKA STIS and I want to having a consultation with you. Can you please accept my request? Thank You" target="_blank" class="btn">Contact</a>
                                     </td>
+
+                                    <?php if ($_SESSION['role'] == 1) { ?>
+                                        <td>
+                                            <a href="doctor_edit.php?id=<?= $doct['id'] ?>">
+                                                <img src="./assets/image/pencil.png" alt="" />
+                                            </a>
+
+                                            <a href="doctor_delete.php?id=<?= $doct['id'] ?>" onclick="return confirm('Are your sure want to delete?'); ">
+                                                <img src="./assets/image/delete.png" alt="" />
+                                            </a>
+                                        </td>
+                                    <?php } ?>
                                 </tr>
                             <?php endforeach; ?>
                         </table>
