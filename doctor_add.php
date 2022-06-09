@@ -77,7 +77,7 @@ if (isset($_POST['add'])) {
                             <input type="text" name="specialty" id="specialty" placeholder="Eg. General, Dentist, etc" required>
 
                             <label for="contact">Contact</label>
-                            <input type="text" name="contact" id="contact" placeholder="Eg. 08527262xxx" required>
+                            <input type="text" name="contact" id="contact" placeholder="Eg. 08527262xxx" pattern="08[0-9]+" title="Nomor HP diawali dengan 08" required>
 
                             <label for="clinic_id">Clinic</label>
                             <select name="clinic_id" id="clinic_id" class="form-control" required>

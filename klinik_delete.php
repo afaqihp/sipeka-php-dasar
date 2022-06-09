@@ -13,7 +13,7 @@ if (delete_clinic_registration($id) > 0) {
     echo "
     <script>
         alert('Registrasi klinik berhasil dihapus!');
-        document.location.href = 'klinik.php?#clinic-history';
+        document.location.href = 'klinik.php';
     </script>
     ";
 } else {

@@ -163,10 +163,10 @@ function add_new_doctor($data)
         return false;
     }
 
-    //Regex check Untuk No. HP
-    if (!preg_match("/^[0-9]*$/", $contact)) {
+    //Regex nomor hp diawali dengan 08
+    if (!preg_match("/^08[0-9]*$/", $contact)) {
         echo "<script>
-            alert('No. HP hanya boleh angka!');
+            alert('Nomor HP harus diawali dengan 08!');
         </script>";
         return false;
     }
